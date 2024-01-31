@@ -1,41 +1,15 @@
-import { Component } from "react";
 import AddCitiesForm from "./AddCitiesForm";
 import Icon from "../common/icon/Icon";
 import Button from "../common/button/Button";
+import { useState } from "react";
+import ErrorAlert from "../common/ErrorAlert/ErrorAlert";
 
-class Cities extends Component {
-  state = {
-    isAddCityFormVisible: false,
-    list: [],
-  };
+const Cities = () => {
+  const [isAddFormVisible, setIsAddFormVisible] = useState(false);
+  const [list, setList] = useState([]);
+  const [error, setError] = useState("");
 
-  render() {
-    const { isAddFormVisible, list } = this.state;
-
-    return (
-      <div>
-        <h2>
-          <Icon variant="pin" label="cities" />
-          <span>Cities</span>
-        </h2>
-        <div>{this.renderList(list)}</div>
-        {isAddFormVisible && (
-          <AddCitiesForm onFormSubmit={this.handleAddItem} />
-        )}
-        <Button
-          action={() => {
-            this.setState({
-              isAddFormVisible: true,
-            });
-          }}
-        >
-          Add City
-        </Button>
-      </div>
-    );
-  }
-
-  renderList(list) {
+  const renderList = (list) => {
     if (!list || list.length === 0) {
       return <div>There are no cities added</div>;
     }
@@ -45,25 +19,50 @@ class Cities extends Component {
         <span>{item.name}</span>
       </div>
     ));
-  }
+  };
 
-  handleAddItem = (item) => {
-    const list = this.state.list.sort((a, b) => a.id > b.id);
+  const handleAddItem = (item) => {
+    const sortedList = list.sort((a, b) => a.id > b.id);
 
-    const newId = list.length > 0 ? list.length + 1 : 0;
+    if (sortedList.find((el) => el.name === item.name)) {
+      setError("Un oras cu denumirea asta exista deja!");
+
+      return;
+    }
+
+    const newId = sortedList.length > 0 ? sortedList.length + 1 : 0;
 
     const itemToAdd = {
       id: newId,
       name: item.name,
     };
 
-    this.setState((prevState) => {
-      return {
-        list: [...prevState.list, itemToAdd],
-        isAddFormVisible: false,
-      };
+    setList((prevState) => {
+      return [...prevState, itemToAdd];
     });
+
+    setIsAddFormVisible(false);
   };
-}
+
+  return (
+    <div>
+      <h2>
+        <Icon variant="pin" label="cities" />
+        <span>Cities</span>
+      </h2>
+      <div>{renderList(list)}</div>
+      {isAddFormVisible && <AddCitiesForm onFormSubmit={handleAddItem} />}
+
+      {error.length > 0 && <ErrorAlert errors={error} />}
+      <Button
+        action={() => {
+          setIsAddFormVisible(true);
+        }}
+      >
+        Add City
+      </Button>
+    </div>
+  );
+};
 
 export default Cities;
