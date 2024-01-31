@@ -1,14 +1,11 @@
-import axios from "axios";
+import apiRequest from "./apiRequest";
 
-axios.defaults.baseURL = "http://localhost:5173";
-
-async function get() {
-  const response = await axios.get("/tutors");
-  return response.data;
+async function getTutors() {
+  return apiRequest.makeGetRequest("/tutors");
 }
 
 const tutorsService = {
-  get,
+  getTutors,
 };
 
 export default tutorsService;

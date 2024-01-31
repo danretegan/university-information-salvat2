@@ -1,36 +1,26 @@
-import axios from "axios";
+import apiRequest from "./apiRequest";
 
-axios.defaults.baseURL = "http://localhost:5173";
-
-async function get() {
-  const response = await axios.get("/cities/");
-
-  return response.data;
+async function getCities() {
+  return apiRequest.makeGetRequest("/cities/");
 }
 
-async function create(city) {
-  const response = await axios.post("/cities/", city);
-
-  return response.data;
+async function createCity(city) {
+  return apiRequest.makePostRequest("/cities/", city);
 }
 
-async function remove(cityId) {
-  const response = await axios.delete(`/cities/${cityId}`);
-
-  return response.data;
+async function removeCity(cityId) {
+  return apiRequest.makeDeleteRequest(`/cities/${cityId}`);
 }
 
-async function update(cityId, city) {
-  const response = await axios.put(`/cities/${cityId}`, city);
-
-  return response.data;
+async function updateCity(cityId, city) {
+  return apiRequest.makePutRequest(`/cities/${cityId}`, city);
 }
 
 const citiesService = {
-  get,
-  create,
-  remove,
-  update,
+  getCities,
+  createCity,
+  removeCity,
+  updateCity,
 };
 
 export default citiesService;
