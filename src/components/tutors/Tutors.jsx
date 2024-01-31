@@ -3,15 +3,15 @@ import Button from "../common/button/Button";
 import AddTutor from "./addTutor/AddTutor";
 import Icon from "../common/icon/Icon";
 import { useEffect, useState } from "react";
-import tutorsService from "../../services/tutorsService";
+// import tutorsService from "../../services/tutorsService";
 
 const TUTORS_KEY = "tutors";
 
 const Tutors = () => {
   const [isAddFormVisible, setIsAddFormVisible] = useState(false);
   const [list, setList] = useState([]);
-  const [error, setError] = useState("");
-  const [isLoading, setIsLoading] = useState(false);
+  // const [error, setError] = useState("");
+  // const [isLoading, setIsLoading] = useState(false);
 
   // useEffect(() => {
   //   async function getTutors() {
