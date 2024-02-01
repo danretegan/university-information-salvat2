@@ -37,6 +37,7 @@ Button.propTypes = {
   children: PropTypes.any,
   action: PropTypes.func,
   button: PropTypes.string,
+  type: PropTypes.string,
 };
 
 export default Button;
