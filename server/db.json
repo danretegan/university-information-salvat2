@@ -1,0 +1,33 @@
+{
+  "tutors": [
+    {
+      "id": 0,
+      "firstName": "Dan",
+      "lastName": "Retegan",
+      "telephone": "+40.753.023.616",
+      "email": "danretegan@yahoo.com",
+      "city": "London",
+      "role": "Web Developer"
+    },
+    {
+      "id": 1,
+      "firstName": "Stephen",
+      "lastName": "Smith",
+      "telephone": "123456",
+      "email": "john@smith.com",
+      "city": "New York",
+      "role": "Member"
+    }
+  ],
+  "cities": [
+    {
+      "id": 2,
+      "name": "San Francisco"
+    },
+    {
+      "id": 3,
+      "name": "Los Angeles"
+    }
+  ],
+  "faculties": []
+}
