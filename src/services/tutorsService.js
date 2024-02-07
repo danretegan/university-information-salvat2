@@ -1,7 +1,7 @@
 import apiRequest from "./apiRequest";
 
 async function getTutors() {
-  return apiRequest.makeGetRequest("/tutors");
+  return apiRequest.fetchData("/tutors");
 }
 
 const tutorsService = {

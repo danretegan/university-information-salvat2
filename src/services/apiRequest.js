@@ -1,32 +1,53 @@
 import axios from "axios";
 
-axios.defaults.baseURL = "http://localhost:5173";
+axios.defaults.baseURL = "http://localhost:3001/";
 
-async function makeGetRequest(endpoint) {
-  const response = await axios.get(endpoint);
-  return response.data;
+async function fetchData(endpoint) {
+  try {
+    const response = await axios.get(endpoint);
+    return response.data;
+  } catch (error) {
+    // Tratează erorile sau aruncă o excepție pentru a le gestiona în altă parte
+    console.error("Error fetching data:", error);
+    throw error;
+  }
 }
 
-async function makePostRequest(endpoint, data) {
-  const response = await axios.post(endpoint, data);
-  return response.data;
+async function createData(endpoint, data) {
+  try {
+    const response = await axios.post(endpoint, data);
+    return response.data;
+  } catch (error) {
+    console.error("Error creating data:", error);
+    throw error;
+  }
 }
 
-async function makeDeleteRequest(endpoint) {
-  const response = await axios.delete(endpoint);
-  return response.data;
+async function updateData(endpoint, data) {
+  try {
+    const response = await axios.put(endpoint, data);
+    return response.data;
+  } catch (error) {
+    console.error("Error updating data:", error);
+    throw error;
+  }
 }
 
-async function makePutRequest(endpoint, data) {
-  const response = await axios.put(endpoint, data);
-  return response.data;
+async function deleteData(endpoint) {
+  try {
+    const response = await axios.delete(endpoint);
+    return response.data;
+  } catch (error) {
+    console.error("Error deleting data:", error);
+    throw error;
+  }
 }
 
 const apiRequest = {
-  makeGetRequest,
-  makePostRequest,
-  makeDeleteRequest,
-  makePutRequest,
+  fetchData,
+  createData,
+  updateData,
+  deleteData,
 };
 
 export default apiRequest;
