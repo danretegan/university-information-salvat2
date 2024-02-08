@@ -15,15 +15,19 @@ const Tutors = () => {
 
   useEffect(() => {
     async function getTutors() {
-      const response = await tutorsService.getTutors();
-      setList(response);
+      try {
+        setIsLoading(true);
+        const response = await tutorsService.getTutors();
+        setList(response);
+      } catch (error) {
+        setError("Error fetching tutors");
+        console.error(error);
+      } finally {
+        setIsLoading(false);
+      }
     }
 
-    setIsLoading(true);
-
-    getTutors()
-      .catch((error) => console.error(error))
-      .finally(() => setIsLoading(false));
+    getTutors();
   }, []);
 
   useEffect(() => {
@@ -31,12 +35,12 @@ const Tutors = () => {
   }, [list]);
 
   const renderList = (items) => {
-    if (!items || !Array.isArray(items)) {
+    if (isLoading) {
       return <>Loading...</>;
     }
 
-    if (items.length === 0) {
-      return <div>There are no tutors.</div>;
+    if (error) {
+      return <div>Error: {error}</div>;
     }
 
     return items.map((el) => {
@@ -85,11 +89,14 @@ const Tutors = () => {
         <Icon variant="cat" label="cat" />
         <span>Tutors</span>
       </h1>
+      {isLoading && <div>Loading...</div>}
+      {error && <div>Error: {error}</div>}
       <div className={`box ${styles.tutorsList}`}>{renderList(list)}</div>
       {isAddFormVisible && <AddTutor onFormSubmit={handleTutor} />}
       <Button action={() => setIsAddFormVisible(true)}>Add Tutor</Button>
     </section>
   );
+  
 };
 
 export default Tutors;
