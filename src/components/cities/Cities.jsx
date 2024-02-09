@@ -1,9 +1,9 @@
+import { useEffect, useState } from "react";
 import AddCitiesForm from "./AddCitiesForm";
+import citiesService from "../../services/citiesService";
 import Icon from "../common/icon/Icon";
 import Button from "../common/button/Button";
-import { useEffect, useState } from "react";
 import ErrorAlert from "../common/errorAlert/ErrorAlert";
-import citiesService from "../../services/citiesService";
 
 const CITIES_KEY = "cities";
 
@@ -27,30 +27,31 @@ const Cities = () => {
 
   useEffect(() => {
     async function getCities() {
-      const response = await citiesService.getCities();
-      setList(response);
-
-      return response;
-    }
-    setIsLoading(true);
-    getCities()
-      .catch((error) => {
+      try {
+        setIsLoading(true);
+        const response = await citiesService.getCities();
+        setList(response);
+        return response;
+      } catch (error) {
         console.error(error);
         setError("A aparut o eroare la obtinerea listei de orase");
-      })
-      .finally(setIsLoading(false));
+      } finally {
+        setIsLoading(false);
+      }
+    }
+
+    getCities();
   }, []);
 
   useEffect(() => {
     localStorage.setItem(CITIES_KEY, JSON.stringify(list));
-  });
+  }, [list]);
 
   const handleAddItem = (item) => {
     const sortedList = list.sort((a, b) => a.id > b.id);
 
     if (sortedList.find((el) => el.name === item.name)) {
       setError("Un oras cu denumirea asta exista deja!");
-
       return;
     }
 
@@ -74,7 +75,8 @@ const Cities = () => {
         <Icon variant="pin" label="cities" />
         <span>Cities</span>
       </h2>
-      <div>{renderList(list)}</div>
+      {isLoading ? <div>Loading...</div> : <div>{renderList(list)}</div>}
+
       {isAddFormVisible && <AddCitiesForm onFormSubmit={handleAddItem} />}
 
       {error.length > 0 && <ErrorAlert errors={error} />}
