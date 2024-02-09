@@ -1,5 +1,11 @@
+import { Outlet } from "react-router-dom";
+
 const FacultyPage = () => {
-  return <div>Faculty Page</div>;
+  return (
+    <div>
+      <Outlet />
+    </div>
+  );
 };
 
 export default FacultyPage;
