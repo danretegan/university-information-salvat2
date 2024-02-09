@@ -39,7 +39,9 @@ const FacultiesPage = () => {
         {list.map((item) => (
           <div key={item.id}>
             {item.name}
-            <Link to={`/faculties/${item.id}/description`}>
+            <Link
+              to={`/university-information/faculties/${item.id}/description`}
+            >
               <span>Details</span>
             </Link>
           </div>
