@@ -10,26 +10,28 @@ const FacultiesPage = () => {
 
   useEffect(() => {
     async function getCities() {
-      const response = await citiesService.getCities();
-      setList(response);
-
-      return response;
-    }
-    setIsLoading(true);
-    getCities()
-      .catch((error) => {
+      try {
+        setIsLoading(true);
+        const response = await citiesService.getCities();
+        setList(response);
+        return response;
+      } catch (error) {
         console.error(error);
         setError("A aparut o eroare la obtinerea listei de orase");
-      })
-      .finally(setIsLoading(false));
-  }, []);
+      } finally {
+        setIsLoading(false);
+      }
+    }
 
-  if (isLoading) {
-    return <div>Se incarca...</div>;
-  }
+    getCities();
+  }, []);
 
   if (error && error.length > 0) {
     return <Error message={error} />;
+  }
+
+  if (isLoading) {
+    return <div>Se incarca...</div>;
   }
 
   return (
