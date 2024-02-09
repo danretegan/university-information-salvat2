@@ -8,7 +8,7 @@ const Sidebar = () => {
       id: "1",
       name: "University",
       icon: <HiBookOpen />,
-      path: "/university-information",
+      path: "/university-information/",
     },
     {
       id: "2",
