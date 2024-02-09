@@ -1,4 +1,4 @@
-univerity-information
+university-information
 │
 ├── public
 │   └── 404.html

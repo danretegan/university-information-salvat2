@@ -2,7 +2,7 @@ import AddCitiesForm from "./AddCitiesForm";
 import Icon from "../common/icon/Icon";
 import Button from "../common/button/Button";
 import { useEffect, useState } from "react";
-import ErrorAlert from "../common/ErrorAlert/ErrorAlert";
+import ErrorAlert from "../common/errorAlert/ErrorAlert";
 import citiesService from "../../services/citiesService";
 
 const CITIES_KEY = "cities";
