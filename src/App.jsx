@@ -2,11 +2,11 @@ import "./App.css";
 import { Route, Routes } from "react-router-dom";
 import SharedLayout from "./pages/SharedLayout";
 import UniversitiesPage from "./pages/universities/UniversitiesPage";
-import FacultiesPage from "./pages/FacultiesPage";
+import FacultiesPage from "./pages/faculties/FacultiesPage";
 import FacultyPage from "./pages/FacultyPage";
 
-import FacultyDescription from "./components/faculties/FacultyDescription";
-import FacultyHistory from "./components/faculties/FacultyHistory";
+import FacultyDescription from "./pages/faculties/faculty/components/FacultyDescription";
+import FacultyHistory from "./pages/faculties/faculty/components/FacultyHistory";
 
 import NotFoundPage from "./pages/NotFoundPage";
 

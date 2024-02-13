@@ -1,9 +1,9 @@
 import styles from "./Tutors.module.css";
-import Button from "../common/button/Button";
+import Button from "../../../common/components/button/Button";
+import Icon from "../../../common/components/icon/Icon";
 import AddTutor from "./addTutor/AddTutor";
-import Icon from "../common/icon/Icon";
 import { useEffect, useState } from "react";
-import tutorsService from "../../services/tutorsService";
+import tutorsService from "../../../common/services/tutorsService";
 
 const TUTORS_KEY = "tutors";
 
@@ -96,7 +96,6 @@ const Tutors = () => {
       <Button action={() => setIsAddFormVisible(true)}>Add Tutor</Button>
     </section>
   );
-  
 };
 
 export default Tutors;

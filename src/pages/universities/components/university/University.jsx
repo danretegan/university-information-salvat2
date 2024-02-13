@@ -1,5 +1,5 @@
 import styles from "./University.module.css";
-import house from "../../images/school@2x.png";
+import house from "../../../../images/school@2x.png";
 
 const University = () => {
   const description =

@@ -1,9 +1,9 @@
 import { useEffect, useState } from "react";
 import AddCitiesForm from "./AddCitiesForm";
-import citiesService from "../../services/citiesService";
-import Icon from "../common/icon/Icon";
-import Button from "../common/button/Button";
-import ErrorAlert from "../common/errorAlert/ErrorAlert";
+import citiesService from "../../../common/services/citiesService";
+import Icon from "../../../common/components/icon/Icon";
+import Button from "../../../common/components/button/Button";
+import ErrorAlert from "../../../common/components/errorAlert/ErrorAlert";
 
 const CITIES_KEY = "cities";
 

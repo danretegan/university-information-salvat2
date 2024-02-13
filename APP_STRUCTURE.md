@@ -30,11 +30,13 @@
                     - FacultyHistory.jsx
 
         - common
-        - components
-          - Button.jsx
-          - Dropdown.jsx
-          - Error.jsx
-          - Loading.jsx 
-          - Modal.jsx
-          - Icon.jsx
-          - ErrorAlert.jsx         
+            - components
+                - Button.jsx
+                - Dropdown.jsx
+                - Error.jsx
+                - Loading.jsx 
+                - Modal.jsx
+                - Icon.jsx
+                - ErrorAlert.jsx
+            - service
+                   
