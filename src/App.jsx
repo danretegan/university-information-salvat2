@@ -1,7 +1,7 @@
 import "./App.css";
 import { Route, Routes } from "react-router-dom";
 import SharedLayout from "./pages/SharedLayout";
-import HomePage from "./pages/HomePage";
+import UniversitiesPage from "./pages/universities/UniversitiesPage";
 import FacultiesPage from "./pages/FacultiesPage";
 import FacultyPage from "./pages/FacultyPage";
 
@@ -14,7 +14,7 @@ const App = () => {
   return (
     <Routes>
       <Route path="/university-information" element={<SharedLayout />}>
-        <Route index element={<HomePage />}></Route>
+        <Route index element={<UniversitiesPage />}></Route>
         <Route path="faculties" element={<FacultiesPage />} />
         <Route path="faculties/:id" element={<FacultyPage />}>
           <Route index element={<FacultyDescription />} />
