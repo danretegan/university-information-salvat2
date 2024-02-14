@@ -2,13 +2,19 @@ import "./App.css";
 import { Route, Routes } from "react-router-dom";
 import SharedLayout from "./pages/SharedLayout";
 import UniversitiesPage from "./pages/universities/UniversitiesPage";
-import FacultiesPage from "./pages/faculties/FacultiesPage";
-import FacultyPage from "./pages/FacultyPage";
-
-import FacultyDescription from "./pages/faculties/faculty/components/FacultyDescription";
-import FacultyHistory from "./pages/faculties/faculty/components/FacultyHistory";
-
 import NotFoundPage from "./pages/NotFoundPage";
+import { lazy } from "react";
+
+//  Importurile dinamice (lazy()) trebuie facute DUPA importurile statice!
+
+const FacultiesPage = lazy(() => import("./pages/faculties/FacultiesPage"));
+const FacultyPage = lazy(() => import("./pages/FacultyPage"));
+const FacultyDescription = lazy(() =>
+  import("./pages/faculties/faculty/components/FacultyDescription")
+);
+const FacultyHistory = lazy(() =>
+  import("./pages/faculties/faculty/components/FacultyHistory")
+);
 
 const App = () => {
   return (
