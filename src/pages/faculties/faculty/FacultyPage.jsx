@@ -1,7 +1,7 @@
 import { createContext, useEffect, useState } from "react";
 import { NavLink, Outlet, useParams } from "react-router-dom";
 import Error from "../../common/components/error/Error";
-import citiesService from "../../common/service/citiesService";
+import citiesService from "../../common/services/citiesService";
 import styles from "./FacultyPage.module.css";
 
 const FacultyContext = createContext();
@@ -19,7 +19,7 @@ const FacultyPage = () => {
 
   useEffect(() => {
     async function getCities() {
-      const response = await citiesService.get();
+      const response = await citiesService.getCities();
       setFaculty(response);
 
       return response;
