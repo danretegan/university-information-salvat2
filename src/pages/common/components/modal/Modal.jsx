@@ -1,6 +1,6 @@
 import PropTypes from "prop-types";
 import styles from "./Modal.module.css";
-import { Hix } from "react-icons/hi";
+import { HiX } from "react-icons/hi";
 import { useEffect } from "react";
 
 const Modal = ({ isOpen, handleClose, header, children }) => {
@@ -31,7 +31,7 @@ const Modal = ({ isOpen, handleClose, header, children }) => {
       <dialog className={styles.modal}>
         <header className={`${styles.header} relative`}>
           <button className={styles.closeBtn} onClick={() => handleClose()}>
-            <Hix />
+            <HiX />
           </button>
         </header>
         <main className={styles.content}>

@@ -8,7 +8,7 @@ import { lazy } from "react";
 //  Importurile dinamice (lazy()) trebuie facute DUPA importurile statice!
 
 const FacultiesPage = lazy(() => import("./pages/faculties/FacultiesPage"));
-const FacultyPage = lazy(() => import("./pages/FacultyPage"));
+const FacultyPage = lazy(() => import("./pages/faculties/faculty/FacultyPage"));
 const FacultyDescription = lazy(() =>
   import("./pages/faculties/faculty/components/FacultyDescription")
 );
