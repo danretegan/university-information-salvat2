@@ -1,26 +1,17 @@
-import { combineReducers, createStore } from "redux";
-import { devToolsEnhancer } from "@redux-devtools/extension";
-import { facultiesReducer } from "./reducers/facultiesReducer";
+import { configureStore } from "@reduxjs/toolkit";
 
-export const rootReducer = combineReducers({
-  faculties: facultiesReducer,
+/**
+ * In store, pentru fiecare "particica" din state-ul aplicatiei, o sa asignam un reducer care se va ocupa exclusiv de logica pentru acea "particica".
+ *
+ * Obiectul de state va fi:
+ * {
+ * cities: [...lista de orase],
+ * faculties: [...lista de facultati],
+ * tutors: [lista de tutori],
+ * facultiesSearchTerm: "",
+ * }
+ */
+
+const store = configureStore({
+  reducer: {},
 });
-
-// const rootReducer = (state, action) => {
-//     switch (action.type) {
-//       // In functie de tipul actiunii, se va executa o logica diferita:
-//       case "faculties/setSearchTerm":
-//         return {
-//           ...state,
-//           faculties: {
-//             ...state.faculties,
-//             serchTerm: action.payload,
-//           },
-//         };
-//       default:
-//         return state;
-//     }
-// };
-
-const enhancer = devToolsEnhancer();
-export const store = createStore(rootReducer, enhancer);
