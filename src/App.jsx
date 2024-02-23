@@ -1,5 +1,5 @@
 import "./App.css";
-import { Route, Routes } from "react-router-dom";
+import { BrowserRouter, Route, Routes } from "react-router-dom";
 import SharedLayout from "./pages/SharedLayout";
 import UniversitiesPage from "./pages/universities/UniversitiesPage";
 import NotFoundPage from "./pages/NotFoundPage";
@@ -18,18 +18,20 @@ const FacultyHistory = lazy(() =>
 
 const App = () => {
   return (
-    <Routes>
-      <Route path="/university-information" element={<SharedLayout />}>
-        <Route index element={<UniversitiesPage />}></Route>
-        <Route path="faculties" element={<FacultiesPage />} />
-        <Route path="faculties/:id" element={<FacultyPage />}>
-          <Route index element={<FacultyDescription />} />
-          <Route path="description" element={<FacultyDescription />} />
-          <Route path="history" element={<FacultyHistory />} />
+    <BrowserRouter>
+      <Routes>
+        <Route path="/university-information" element={<SharedLayout />}>
+          <Route index element={<UniversitiesPage />}></Route>
+          <Route path="faculties" element={<FacultiesPage />} />
+          <Route path="faculties/:id" element={<FacultyPage />}>
+            <Route index element={<FacultyDescription />} />
+            <Route path="description" element={<FacultyDescription />} />
+            <Route path="history" element={<FacultyHistory />} />
+          </Route>
+          <Route path="*" element={<NotFoundPage />} />
         </Route>
-        <Route path="*" element={<NotFoundPage />} />
-      </Route>
-    </Routes>
+      </Routes>
+    </BrowserRouter>
   );
 };
 
