@@ -1,22 +1,20 @@
 import { createSlice, nanoid } from "@reduxjs/toolkit";
 
-const initialState = {
-  list: [
-    {
-      id: 1,
-      name: "Faculty of Math",
-      description:
-        "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.",
-    },
-    {
-      id: 3,
-      name: "Faculty of Informatics",
-      description:
-        "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.",
-    },
-  ],
-  searchTerm: "",
-};
+const initialState = [
+  {
+    id: 1,
+    name: "Faculty of Math",
+    description:
+      "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.",
+  },
+  {
+    id: 3,
+    name: "Faculty of Informatics",
+    description:
+      "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.",
+  },
+];
+  
 
 const facultiesSlice = createSlice({
   name: "faculties",
