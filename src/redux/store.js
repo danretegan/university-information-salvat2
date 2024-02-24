@@ -1,4 +1,8 @@
 import { configureStore } from "@reduxjs/toolkit";
+import { citiesReducer } from "./slices/citiesSlice";
+import { facultiesSearchTermReducer } from "./slices/facultiesSearchTermSlice";
+import { facultiesReducer } from "./slices/facultiesSlice";
+import { tutorsReducer } from "./slices/tutorsSlice";
 
 /**
  * In store, pentru fiecare "particica" din state-ul aplicatiei, o sa asignam un reducer care se va ocupa exclusiv de logica pentru acea "particica".
@@ -13,5 +17,12 @@ import { configureStore } from "@reduxjs/toolkit";
  */
 
 const store = configureStore({
-  reducer: {},
+  reducer: {
+    cities: citiesReducer,
+    facultiesSearchTerm: facultiesSearchTermReducer,
+    faculties: facultiesReducer,
+    tutors: tutorsReducer,
+  },
 });
+
+export default store;
