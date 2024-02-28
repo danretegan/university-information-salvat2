@@ -1,26 +1,24 @@
 import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
 import tutorsService from "../../pages/common/services/tutorsService";
 
-const initialState = [
-  {
-    status: "idle",
-    error: "",
-    item: [],
-  },
-];
+const initialState = {
+  status: "idle",
+  error: "",
+  items: [], 
+};
 
 export const fetchTutors = createAsyncThunk("tutors/fetchTutors", async () => {
   const result = await tutorsService.getTutors();
-
+  
   return result;
 });
 
 export const addTutor = createAsyncThunk(
   "tutors/addTutor",
   async (initialPost) => {
-    const response = await tutorsService.addTutor(initialPost);
+    const response = await tutorsService.createTutor(initialPost); 
 
-    return response.data;
+    return response;
   }
 );
 
@@ -30,6 +28,7 @@ const tutorsSlice = createSlice({
   reducers: {},
   extraReducers(builder) {
     builder
+
       // GET:
       .addCase(fetchTutors.pending, (state) => {
         state.status = "loading";
@@ -42,6 +41,7 @@ const tutorsSlice = createSlice({
         state.status = "failed";
         state.error = action.error.message;
       })
+
       // CREATE:
       .addCase(addTutor.fulfilled, (state, action) => {
         state.items.push(action.payload);
@@ -49,6 +49,6 @@ const tutorsSlice = createSlice({
   },
 });
 
-// Exportam generatoarele de actiuni si reducerul:
+// Exportăm generatoarele de acțiuni și reducerul:
 export const { editTutor, deleteTutor } = tutorsSlice.actions;
 export const tutorsReducer = tutorsSlice.reducer;
