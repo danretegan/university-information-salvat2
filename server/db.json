@@ -1,7 +1,7 @@
 {
   "tutors": [
     {
-      "id": 0,
+      "id": "0",
       "firstName": "Dan",
       "lastName": "Retegan",
       "telephone": "+40.753.023.616",
@@ -10,7 +10,7 @@
       "role": "Web Developer"
     },
     {
-      "id": 1,
+      "id": "1",
       "firstName": "Stephen",
       "lastName": "Smith",
       "telephone": "123456",
@@ -21,32 +21,32 @@
   ],
   "cities": [
     {
-      "id": 2,
+      "id": "2",
       "name": "San Francisco"
     },
     {
-      "id": 3,
+      "id": "3",
       "name": "Los Angeles"
     }
   ],
   "faculties": [
     {
-      "id": 4,
+      "id": "4",
       "name": "Faculty of Math",
       "description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat."
     },
     {
-      "id": 5,
+      "id": "5",
       "name": "Faculty of Physics",
       "description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat."
     },
     {
-      "id": 6,
+      "id": "6",
       "name": "Faculty of Computer Science",
       "description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat."
     },
     {
-      "id": 7,
+      "id": "7",
       "name": "Faculty of Informatics",
       "description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.",
       "history": "What a rich history"
