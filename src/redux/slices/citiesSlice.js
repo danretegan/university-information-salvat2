@@ -1,48 +1,89 @@
-import { createSlice, nanoid } from "@reduxjs/toolkit";
+import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
+import citiesService from "../../pages/common/services/citiesService";
 
-const initialState = [
-  {
-    id: 2,
-    name: "San Francisco",
-  },
-];
+const initialState = {
+  status: "idle",
+  error: "",
+  items: [],
+};
 
+export const fetchCities = createAsyncThunk("cities/fetchCities", async () => {
+  return citiesService.getCities();
+});
+
+export const addCity = createAsyncThunk(
+  "cities/addCity",
+  async (initialPost) => {
+    return citiesService.createCity(initialPost);
+  }
+);
+
+export const deleteCity = createAsyncThunk(
+  "cities/deleteCity",
+  async (initialPost) => {
+    return citiesService.removeCity(initialPost);
+  }
+);
+
+export const updateCity = createAsyncThunk(
+  "cities/updateCity",
+  async (initialPost) => {
+    return citiesService.updateCity(initialPost);
+  }
+);
+
+// pentru slice, ce avem la name, e ce avem in obiectul de state global, de ex, {cities: []}
 const citiesSlice = createSlice({
   name: "cities",
   initialState: initialState,
-  reducers: {
-    addCity: {
-      reducer: (state, action) => {
-        state.push(action.payload);
-      },
-      prepare: (item) => {
-        return {
-          payload: {
-            id: nanoid(),
-            ...item,
-          },
-        };
-      },
-    },
-    editCity(state, action) {
-      return state.map((item) => {
-        if (item.id !== action.payload.id) {
-          // Nu este item-ul care ne intereseaza! Returneaza item-ul asa cum este:
-          return item;
+  reducers: {},
+  extraReducers: (builder) => {
+    // READ
+    builder
+      .addCase(fetchCities.pending, (state) => {
+        state.status = "loading";
+      })
+      .addCase(fetchCities.fulfilled, (state, action) => {
+        state.status = "suceeded";
+        state.items = action.payload;
+      })
+      .addCase(fetchCities.rejected, (state, action) => {
+        state.status = "failed";
+        state.error = action.error.message;
+      })
+
+      // CREATE
+      .addCase(addCity.fulfilled, (state, action) => {
+        state.items.push(action.payload);
+      })
+      .addCase(addCity.rejected, (state, action) => {
+        state.error = action.error.message;
+      })
+
+      // DELETE
+      .addCase(deleteCity.fulfilled, (state, action) => {
+        const index = state.items.findIndex((el) => el.id === action.payload);
+
+        state.items.splice(index, 1);
+      })
+      .addCase(deleteCity.rejected, (state, action) => {
+        state.error = action.payload.error;
+      })
+
+      // UPDATE
+      .addCase(updateCity.fulfilled, (state, action) => {
+        const index = state.items.findIndex((el) => el.id === action.payload);
+
+        if (index !== -1) {
+          state.items[index] = { ...action.payload };
         }
-        // Altfel, acum va fi item-ul pe care il vrem! Returneaza item-ul updatat dupa cum urmeaza:
-        return {
-          ...item,
-          ...action.payload,
-        };
+      })
+      .addCase(updateCity.rejected, (state, action) => {
+        state.error = action.error.message;
       });
-    },
-    deleteCity(state, action) {
-      return state.filter((el) => el.id !== action.payload);
-    },
   },
 });
 
-// Exportam generatoarele de actiuni si reducerul:
-export const { addCity, editCity, deleteCity } = citiesSlice.actions;
+// Exportam generatorarele de actiuni si reducerul
+
 export const citiesReducer = citiesSlice.reducer;
