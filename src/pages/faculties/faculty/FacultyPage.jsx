@@ -45,8 +45,12 @@ const FacultyPage = () => {
   return (
     <div>
       <div className={styles.linksWrapper}>
-        <NavLink to={`/faculties/${id}/description`}>Description</NavLink>
-        <NavLink to={`/faculties/${id}/history`}>History</NavLink>
+        <NavLink to={`/university-information/faculties/${id}/description`}>
+          Description
+        </NavLink>
+        <NavLink to={`/university-information/faculties/${id}/history`}>
+          History
+        </NavLink>
       </div>
       <FacultyContext.Provider value={faculty}>
         <Outlet />
