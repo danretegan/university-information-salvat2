@@ -1,55 +1,54 @@
-import { createSlice, nanoid } from "@reduxjs/toolkit";
+import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
+import tutorsService from "../../pages/common/services/tutorsService";
 
 const initialState = [
   {
-    id: 0,
-    firstName: "Dan",
-    lastName: "Retegan",
-    telephone: "+40.753.023.616",
-    email: "danretegan@yahoo.com",
-    city: "London",
-    role: "Web Developer",
+    status: "idle",
+    error: "",
+    item: [],
   },
 ];
+
+export const fetchTutors = createAsyncThunk("tutors/fetchTutors", async () => {
+  const result = await tutorsService.getTutors();
+
+  return result;
+});
+
+export const addTutor = createAsyncThunk(
+  "tutors/addTutor",
+  async (initialPost) => {
+    const response = await tutorsService.addTutor(initialPost);
+
+    return response.data;
+  }
+);
 
 const tutorsSlice = createSlice({
   name: "tutors",
   initialState: initialState,
-  reducers: {
-    addTutor: {
-      reducer: (state, action) => {
-        state.push(action.payload);
-      },
-      prepare: (item) => {
-        return {
-          payload: {
-            id: nanoid(),
-            role: "member",
-            ...item,
-          },
-        };
-      },
-    },
-    editTutor(state, action) {
-      return state.map((item) => {
-        if (item.id !== action.payload.id) {
-          // Nu este item-ul care ne intereseaza! Returneaza item-ul asa cum este:
-          return item;
-        }
-
-        // Altfel, acum va fi item-ul pe care il vrem! Returneaza item-ul updatat dupa cum urmeaza:
-        return {
-          ...item,
-          ...action.payload,
-        };
+  reducers: {},
+  extraReducers(builder) {
+    builder
+      // GET:
+      .addCase(fetchTutors.pending, (state) => {
+        state.status = "loading";
+      })
+      .addCase(fetchTutors.fulfilled, (state, action) => {
+        state.status = "succeeded";
+        state.items = action.payload;
+      })
+      .addCase(fetchTutors.rejected, (state, action) => {
+        state.status = "failed";
+        state.error = action.error.message;
+      })
+      // CREATE:
+      .addCase(addTutor.fulfilled, (state, action) => {
+        state.items.push(action.payload);
       });
-    },
-    deleteTutor(state, action) {
-      return state.filter((el) => el.id !== action.payload);
-    },
   },
 });
 
 // Exportam generatoarele de actiuni si reducerul:
-export const { addTutor, editTutor, deleteTutor } = tutorsSlice.actions;
+export const { editTutor, deleteTutor } = tutorsSlice.actions;
 export const tutorsReducer = tutorsSlice.reducer;
