@@ -11,7 +11,7 @@ export const selectTutorsError = (state) => state.tutors.error;
 export const selectFilteredTutors = createSelector(
   [selectTutors, selectTutorsFilter],
   (list, searchTerm) => {
-    return searchTerm.trim().length > 3
+    return searchTerm.trim().length > 0
       ? list.filter(
           (el) =>
             el.firstName.toLowerCase().includes(searchTerm) ||
