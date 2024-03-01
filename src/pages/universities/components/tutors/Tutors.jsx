@@ -8,16 +8,26 @@ import AddTutor from "./addTutor/AddTutor";
 import { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { addTutor, fetchTutors } from "../../../../redux/slices/tutorsSlice";
+import {
+  selectFilteredTutors,
+  selectTutorsError,
+  selectTutorsFilter,
+  selectTutorsStatus,
+} from "../../../../redux/selectors";
+import { setFilter } from "../../../../redux/slices/tutorsFilterSlice";
 
 export default function Tutors() {
-  const [searchTerm, setSearchTerm] = useState("");
   const [isAddFormVisible, setIsAddFormVisible] = useState(false);
   const [addRequestStatus, setAddRequestStatus] = useState("idle");
+
+  const filteredList = useSelector(selectFilteredTutors);
+  const searchTerm = useSelector(selectTutorsFilter);
+  const tutorsStatus = useSelector(selectTutorsStatus);
+  const error = useSelector(selectTutorsError);
+
   const dispatch = useDispatch();
-  const list = useSelector((state) => state.tutors.items);
-  const error = useSelector((state) => state.tutors.error);
-  const tutorsStatus = useSelector((state) => state.tutors.status);
-  const isLoading = tutorsStatus === "isloading";
+
+  const isLoading = tutorsStatus === "loading";
 
   // GET
   useEffect(() => {
@@ -38,11 +48,6 @@ export default function Tutors() {
   );
 
   function renderTutors() {
-    const filteredList =
-      searchTerm.length > 0
-        ? list.filter((el) => el.firstName.includes(searchTerm))
-        : list;
-
     return (
       <>
         <div className={`box ${styles.tutorsList}`}>
@@ -54,7 +59,7 @@ export default function Tutors() {
 
         <SearchBar
           handleChange={(evt) => {
-            setSearchTerm(evt.target.value);
+            dispatch(setFilter(evt.target.value));
           }}
           placeholder="Search for tutor..."
           searchTerm={searchTerm}
