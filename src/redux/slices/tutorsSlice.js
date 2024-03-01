@@ -1,22 +1,24 @@
+// Folosim createAsyncThunk și extraReducers din Redux Toolkit pentru a gestiona operațiuni asincrone, cum ar fi preluarea și adăugarea tutorilor în starea Redux:
+
 import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
 import tutorsService from "../../pages/common/services/tutorsService";
 
 const initialState = {
   status: "idle",
   error: "",
-  items: [], 
+  items: [],
 };
 
 export const fetchTutors = createAsyncThunk("tutors/fetchTutors", async () => {
   const result = await tutorsService.getTutors();
-  
+
   return result;
 });
 
 export const addTutor = createAsyncThunk(
   "tutors/addTutor",
   async (initialPost) => {
-    const response = await tutorsService.createTutor(initialPost); 
+    const response = await tutorsService.createTutor(initialPost);
 
     return response;
   }
