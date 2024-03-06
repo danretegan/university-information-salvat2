@@ -13,7 +13,7 @@ import Icon from "../../../common/components/icon/Icon";
 import Modal from "../../../common/components/modal/Modal";
 import Button from "../../../common/components/button/Button";
 import Loading from "../../../common/components/loading/Loading";
-import Dropdown from "../../../common/components/Dropdown/Dropdown";
+import Dropdown from "../../../common/components/dropdown/Dropdown";
 import ErrorAlert from "../../../common/components/errorAlert/ErrorAlert";
 import AlternateButton from "../../../common/components/button/AlternateButton";
 
