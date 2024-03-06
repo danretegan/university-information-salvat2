@@ -1,5 +1,103 @@
+import { useState } from "react";
+import { useDispatch, useSelector } from "react-redux";
+import { selectUser } from "../../redux/selectors";
+import { loginUser, registerUser } from "../../redux/slices/authSlice";
+import Error from "../common/components/error/Error";
+
 function LoginPage() {
-  return <div>Login Page...</div>;
+  const [emailLogin, setEmailLogin] = useState("");
+  const [passwordLogin, setPasswordLogin] = useState("");
+  const [emailRegister, setEmailRegister] = useState("");
+  const [passwordRegister, setPasswordRegister] = useState("");
+
+  const userInfo = useSelector(selectUser);
+
+  const dispatch = useDispatch();
+
+  const handleLoginSubmit = async (e) => {
+    e.preventDefault();
+
+    try {
+      const payload = {
+        email: emailLogin,
+        password: passwordLogin,
+      };
+      dispatch(loginUser(payload));
+    } catch (err) {
+      console.error("Failed to login the user", err);
+    }
+  };
+
+  const handleRegisterSubmit = async (e) => {
+    e.preventDefault();
+
+    try {
+      const payload = {
+        email: emailRegister,
+        password: passwordRegister,
+      };
+      dispatch(registerUser(payload));
+    } catch (err) {
+      console.error("Failed to register the user", err);
+    }
+  };
+
+  const handleLogOut = (e) => {
+    e.preventDefault();
+  };
+
+  const errorMessage = userInfo?.error || "";
+
+  return (
+    <section>
+      <code>{JSON.stringify(userInfo)}</code>
+      {errorMessage.length > 0 && <Error message={errorMessage} />}
+
+      {/* Login */}
+      <form onSubmit={handleLoginSubmit}>
+        <h2>Login:</h2>
+
+        <label>
+          <span>Email:</span>
+          <input type="text" onChange={(e) => setEmailLogin(e.target.value)} />
+        </label>
+
+        <label>
+          <span>Password:</span>
+          <input
+            type="text"
+            onChange={(e) => setPasswordLogin(e.target.value)}
+          />
+        </label>
+        <button>Login</button>
+      </form>
+
+      {/* Register */}
+      <form onSubmit={handleRegisterSubmit}>
+        <h2>Register:</h2>
+
+        <label>
+          <span>Email:</span>
+          <input
+            type="text"
+            onChange={(e) => setEmailRegister(e.target.value)}
+          />
+        </label>
+
+        <label>
+          <span>Password:</span>
+          <input
+            type="text"
+            onChange={(e) => setPasswordRegister(e.target.value)}
+          />
+        </label>
+
+        <button>Register</button>
+      </form>
+
+      <button onClick={handleLogOut}>Logout</button>
+    </section>
+  );
 }
 
 export default LoginPage;
