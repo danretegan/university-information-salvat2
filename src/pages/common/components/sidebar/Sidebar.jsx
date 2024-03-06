@@ -16,6 +16,11 @@ const Sidebar = () => {
       icon: <HiAcademicCap />,
       path: "/university-information/faculties",
     },
+    {
+      id: "3",
+      name: "Login",
+      path: "/university-information/login",
+    },
   ];
 
   return (
