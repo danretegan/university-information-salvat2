@@ -16,11 +16,14 @@ const FacultyHistory = lazy(() =>
   import("./pages/faculties/faculty/components/FacultyHistory")
 );
 
+const LoginPage = lazy(() => import("./pages/login/LoginPage"));
+
 const App = () => {
   return (
     <BrowserRouter>
       <Routes>
         <Route path="/university-information" element={<SharedLayout />}>
+          <Route path="login" element={<LoginPage />} />
           <Route index element={<UniversitiesPage />}></Route>
           <Route path="faculties" element={<FacultiesPage />} />
           <Route path="faculties/:id" element={<FacultyPage />}>
