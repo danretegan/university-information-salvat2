@@ -18,11 +18,12 @@ function LoginPage() {
     e.preventDefault();
 
     try {
+      console.log("Attempting login...");
       const payload = {
         email: emailLogin,
         password: passwordLogin,
       };
-      await dispatch(loginUser(payload));
+      dispatch(loginUser(payload));
     } catch (err) {
       console.error("Failed to login the user", err);
     }
@@ -32,11 +33,12 @@ function LoginPage() {
     e.preventDefault();
 
     try {
+      console.log("Attempting registration...");
       const payload = {
         email: emailRegister,
         password: passwordRegister,
       };
-      await dispatch(registerUser(payload));
+      dispatch(registerUser(payload));
     } catch (err) {
       console.error("Failed to register the user", err);
     }
