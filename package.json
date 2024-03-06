@@ -9,7 +9,9 @@
     "deploy": "gh-pages -d dist",
     "start": "vite",
     "start-server": "json-server --watch server/db.json --port 3001",
+    "start-server-auth": "json-server --watch -p 3001 db.json -m ./node_modules/json-server-auth",
     "dev": "concurrently \"npm run start\" \"npm run start-server\"",
+    "dev-auth": "concurrently \"npm run start\" \"npm run start-server-auth\"",
     "build": "vite build",
     "lint": "eslint . --ext js,jsx --report-unused-disable-directives --max-warnings 0",
     "preview": "vite preview"
