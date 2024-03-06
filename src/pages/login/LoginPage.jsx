@@ -22,7 +22,7 @@ function LoginPage() {
         email: emailLogin,
         password: passwordLogin,
       };
-      dispatch(loginUser(payload));
+      await dispatch(loginUser(payload));
     } catch (err) {
       console.error("Failed to login the user", err);
     }
@@ -36,7 +36,7 @@ function LoginPage() {
         email: emailRegister,
         password: passwordRegister,
       };
-      dispatch(registerUser(payload));
+      await dispatch(registerUser(payload));
     } catch (err) {
       console.error("Failed to register the user", err);
     }
