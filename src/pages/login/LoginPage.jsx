@@ -42,7 +42,7 @@ function LoginPage() {
     }
   };
 
-  const handleLogOut = (e) => {
+  const handleLogout = (e) => {
     e.preventDefault();
   };
 
@@ -56,7 +56,6 @@ function LoginPage() {
       {/* Login */}
       <form onSubmit={handleLoginSubmit}>
         <h2>Login:</h2>
-
         <label>
           <span>Email:</span>
           <input type="text" onChange={(e) => setEmailLogin(e.target.value)} />
@@ -65,17 +64,17 @@ function LoginPage() {
         <label>
           <span>Password:</span>
           <input
-            type="text"
+            type="password"
             onChange={(e) => setPasswordLogin(e.target.value)}
           />
         </label>
+
         <button>Login</button>
       </form>
 
       {/* Register */}
       <form onSubmit={handleRegisterSubmit}>
         <h2>Register:</h2>
-
         <label>
           <span>Email:</span>
           <input
@@ -87,7 +86,7 @@ function LoginPage() {
         <label>
           <span>Password:</span>
           <input
-            type="text"
+            type="password"
             onChange={(e) => setPasswordRegister(e.target.value)}
           />
         </label>
@@ -95,7 +94,8 @@ function LoginPage() {
         <button>Register</button>
       </form>
 
-      <button onClick={handleLogOut}>Logout</button>
+      {/* Logout */}
+      <button onClick={handleLogout}>Logout</button>
     </section>
   );
 }
