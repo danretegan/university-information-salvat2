@@ -24,10 +24,10 @@ Create a db.json file with some data
 
 ```
 Without auth:
-json-server --watch -p 4001 db.json
+json-server --watch -p 3001 db.json
 
 // With auth middleware:
-json-server --watch -p 4001 db.json -m ./node_modules/json-server-auth
+json-server --watch -p 3001 db.json -m ./node_modules/json-server-auth
 
 
 ```
