@@ -4,7 +4,7 @@ axios.defaults.baseURL = "http://localhost:3001/";
 
 async function login(payload) {
   try {
-    const response = await axios.post("/university-information/login", payload);
+    const response = await axios.post("/login", payload);
     console.dir(response.data);
     return response;
   } catch (error) {
@@ -15,10 +15,7 @@ async function login(payload) {
 
 async function register(payload) {
   try {
-    const response = await axios.post(
-      "/university-information/register",
-      payload
-    );
+    const response = await axios.post("/register", payload);
     console.dir(response.data);
     return response;
   } catch (error) {
