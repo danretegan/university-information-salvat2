@@ -1,6 +1,7 @@
 import axios from "axios";
+import setAxiosDefaults from "./setAxiosDefaults";
 
-axios.defaults.baseURL = "http://localhost:3001/";
+setAxiosDefaults();
 
 async function fetchData(endpoint) {
   try {
@@ -9,7 +10,7 @@ async function fetchData(endpoint) {
   } catch (error) {
     // Tratează erorile sau aruncă o excepție pentru a le gestiona în altă parte
     console.error("Error fetching data:", error);
-    throw error;
+    throw error.response?.data || error;
   }
 }
 
@@ -19,7 +20,7 @@ async function createData(endpoint, data) {
     return response.data;
   } catch (error) {
     console.error("Error creating data:", error);
-    throw error;
+    throw error.response?.data || error;
   }
 }
 
@@ -29,7 +30,7 @@ async function updateData(endpoint, data) {
     return response.data;
   } catch (error) {
     console.error("Error updating data:", error);
-    throw error;
+    throw error.response?.data || error;
   }
 }
 
@@ -39,7 +40,7 @@ async function deleteData(endpoint) {
     return response.data;
   } catch (error) {
     console.error("Error deleting data:", error);
-    throw error;
+    throw error.response?.data || error;
   }
 }
 
