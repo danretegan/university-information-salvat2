@@ -29,8 +29,8 @@
       "name": "Los Angeles"
     },
     {
-      "id": "23de",
-      "name": "Bistrita"
+      "name": "Bistrita",
+      "id": "3Z7Z8Jm"
     }
   ],
   "faculties": [
@@ -58,9 +58,9 @@
   ],
   "users": [
     {
-      "id": "1",
       "email": "test@test.com",
-      "password": "123"
+      "password": "$2a$10$83cqWORJeu21IvOZYYbtZeH2PqGtZXEXjPrxC2JZ77Fl80b9muP/a",
+      "id": 1
     }
   ]
 }

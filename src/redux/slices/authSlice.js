@@ -17,21 +17,31 @@ const initialState = {
 };
 
 export const loginUser = createAsyncThunk("auth/login", async (payload) => {
-  const { data } = await authService.login(payload);
-
-  localStorage.setItem("token", data.accessToken);
-
-  return data;
+  try {
+    console.log("Attempting login...");
+    const { data } = await authService.login(payload);
+    localStorage.setItem("token", data.accessToken);
+    console.log("Login successful. User data:", data.user);
+    return data;
+  } catch (error) {
+    console.error("Login failed:", error.message);
+    throw error;
+  }
 });
 
 export const registerUser = createAsyncThunk(
   "auth/register",
   async (payload) => {
-    const { data } = await authService.register(payload);
-
-    localStorage.setItem("token", data.accessToken);
-
-    return data;
+    try {
+      console.log("Attempting registration...");
+      const { data } = await authService.register(payload);
+      localStorage.setItem("token", data.accessToken);
+      console.log("Registration successful. User data:", data.user);
+      return data;
+    } catch (error) {
+      console.error("Registration failed:", error.message);
+      throw error;
+    }
   }
 );
 

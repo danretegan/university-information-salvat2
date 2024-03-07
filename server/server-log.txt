@@ -1,0 +1,22 @@
+
+  \{^_^}/ hi!
+
+  Loading db.json
+  Loading ./node_modules/json-server-auth
+  Done
+
+  Resources
+  http://localhost:3001/tutors
+  http://localhost:3001/cities
+  http://localhost:3001/faculties
+  http://localhost:3001/users
+
+  Home
+  http://localhost:3001
+
+  Type s + enter at any time to create a snapshot of the database
+  Watching...
+
+[0mPOST /register [33m400[0m 27.079 ms - 23[0m
+
+password: 123456sdfgdfg--
