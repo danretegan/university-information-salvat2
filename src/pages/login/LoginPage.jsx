@@ -3,6 +3,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { selectUser } from "../../redux/selectors";
 import { loginUser, registerUser } from "../../redux/slices/authSlice";
 import Error from "../common/components/error/Error";
+import { useNavigate } from "react-router-dom";
 
 function LoginPage() {
   const [emailLogin, setEmailLogin] = useState("");
@@ -14,16 +15,27 @@ function LoginPage() {
 
   const dispatch = useDispatch();
 
+  const navigate = useNavigate();
+
   const handleLoginSubmit = async (e) => {
     e.preventDefault();
 
     try {
       console.log("Attempting login...");
+
       const payload = {
         email: emailLogin,
         password: passwordLogin,
       };
+
       await dispatch(loginUser(payload));
+
+      if (userInfo.isAuthenticated) {
+        navigate("/university-information");
+      } else {
+        setEmailLogin("");
+        setPasswordLogin("");
+      }
     } catch (err) {
       console.error("Failed to login the user", err);
     }
@@ -34,11 +46,16 @@ function LoginPage() {
 
     try {
       console.log("Attempting registration...");
+
       const payload = {
         email: emailRegister,
         password: passwordRegister,
       };
+
       await dispatch(registerUser(payload));
+
+      setEmailRegister("");
+      setPasswordRegister("");
     } catch (err) {
       console.error("Failed to register the user", err);
     }
@@ -60,7 +77,12 @@ function LoginPage() {
         <h2>Login:</h2>
         <label>
           <span>Email:</span>
-          <input type="text" onChange={(e) => setEmailLogin(e.target.value)} />
+          <input
+            type="text"
+            onChange={(e) => setEmailLogin(e.target.value)}
+            // includem atributul value pentru a crea un input controlat și a ne asigura că inputul reflectă întotdeauna starea (starea emailLogin /la fel si mai jos).
+            value={emailLogin}
+          />
         </label>
 
         <label>
@@ -68,6 +90,7 @@ function LoginPage() {
           <input
             type="password"
             onChange={(e) => setPasswordLogin(e.target.value)}
+            value={passwordLogin}
           />
         </label>
 
@@ -82,6 +105,7 @@ function LoginPage() {
           <input
             type="text"
             onChange={(e) => setEmailRegister(e.target.value)}
+            value={emailRegister}
           />
         </label>
 
@@ -90,6 +114,7 @@ function LoginPage() {
           <input
             type="password"
             onChange={(e) => setPasswordRegister(e.target.value)}
+            value={passwordRegister}
           />
         </label>
 
