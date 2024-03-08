@@ -27,10 +27,6 @@
     {
       "id": "3",
       "name": "Los Angeles"
-    },
-    {
-      "name": "Bistrita",
-      "id": "3Z7Z8Jm"
     }
   ],
   "faculties": [
@@ -56,11 +52,5 @@
       "history": "What a rich history"
     }
   ],
-  "users": [
-    {
-      "email": "test@test.com",
-      "password": "$2a$10$83cqWORJeu21IvOZYYbtZeH2PqGtZXEXjPrxC2JZ77Fl80b9muP/a",
-      "id": 1
-    }
-  ]
+  "users": []
 }
