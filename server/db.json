@@ -52,5 +52,11 @@
       "history": "What a rich history"
     }
   ],
-  "users": []
+  "users": [
+    {
+      "email": "test@test.com",
+      "password": "$2a$10$rIwrvZh5CbTyAspdJ/ADhuL6NN7k4pzcyCitRDStwhDEJi6Sd3UYq",
+      "id": 1
+    }
+  ]
 }

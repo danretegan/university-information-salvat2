@@ -19,4 +19,4 @@
 
 [0mPOST /register [33m400[0m 27.079 ms - 23[0m
 
-password: 123456sdfgdfg--
+password: Bestpassw0rd
