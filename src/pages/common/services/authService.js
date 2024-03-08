@@ -27,7 +27,14 @@ async function register(payload) {
 }
 
 async function logout() {
-  localStorage.removeItem("token");
+  try {
+    console.log("Attempting logout...");
+    localStorage.removeItem("token");
+    console.log("Token removed from localStorage.");
+  } catch (error) {
+    console.error("Logout failed:", error.message);
+    throw error;
+  }
 }
 
 const authService = {
