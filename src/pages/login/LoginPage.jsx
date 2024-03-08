@@ -1,7 +1,11 @@
 import { useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { selectUser } from "../../redux/selectors";
-import { loginUser, registerUser } from "../../redux/slices/authSlice";
+import {
+  loginUser,
+  logoutUser,
+  registerUser,
+} from "../../redux/slices/authSlice";
 import Error from "../common/components/error/Error";
 import { useNavigate } from "react-router-dom";
 
@@ -63,6 +67,8 @@ function LoginPage() {
 
   const handleLogout = (e) => {
     e.preventDefault();
+    dispatch(logoutUser());
+    navigate("/university-information");
   };
 
   const errorMessage = userInfo?.error || "";
