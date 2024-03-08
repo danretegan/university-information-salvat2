@@ -45,6 +45,17 @@ export const registerUser = createAsyncThunk(
   }
 );
 
+export const logoutUser = createAsyncThunk("auth/logout", async () => {
+  try {
+    console.log("Attempting logout...");
+    await authService.logout();
+    console.log("Logout successful.");
+  } catch (error) {
+    console.error("Logout failed:", error.message);
+    throw error;
+  }
+});
+
 const authSlice = createSlice({
   name: "auth",
   initialState,
@@ -91,6 +102,25 @@ const authSlice = createSlice({
         state.status = "failed";
         state.loading = false;
         state.isAuthenticated = false;
+        state.error = action.error.message;
+      })
+
+      // logoutUser:
+      .addCase(logoutUser.pending, (state) => {
+        state.status = "loading";
+        state.loading = true;
+        state.error = null;
+      })
+      .addCase(logoutUser.fulfilled, (state) => {
+        state.status = "succeeded";
+        state.loading = false;
+        state.isAuthenticated = false;
+        state.email = null;
+        state.userToken = null;
+      })
+      .addCase(logoutUser.rejected, (state, action) => {
+        state.status = "failed";
+        state.loading = false;
         state.error = action.error.message;
       });
   },
