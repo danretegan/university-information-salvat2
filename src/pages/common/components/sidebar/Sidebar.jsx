@@ -41,6 +41,15 @@ const Sidebar = () => {
           </li>
         ))}
       </ul>
+      <p>
+        - Start local server without authentification: <br />
+        -- cd server <br />
+        -- npm run start <br />
+        ========================== <br />
+        - Start local server with authentification: <br />
+        -- cd server <br />
+        -- npm run start-auth
+      </p>
     </div>
   );
 };
