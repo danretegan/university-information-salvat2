@@ -37,7 +37,7 @@ function AlternateButton({ children, action, type = "button" }) {
 AlternateButton.propTypes = {
   children: PropTypes.any,
   action: PropTypes.func,
-  button: PropTypes.string,
+  type: PropTypes.string,
 };
 
 export default AlternateButton;

@@ -1,5 +1,5 @@
 import { useState } from "react";
-import Button from "../../../common/components/button/Button";
+import Button from "../../../common/components/buttons/Button";
 import PropTypes from "prop-types";
 
 const AddFacultiesForm = ({ onFormSubmit }) => {

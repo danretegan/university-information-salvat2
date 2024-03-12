@@ -11,11 +11,11 @@ import {
 } from "../../../../redux/slices/citiesSlice";
 import Icon from "../../../common/components/icon/Icon";
 import Modal from "../../../common/components/modal/Modal";
-import Button from "../../../common/components/button/Button";
+import Button from "../../../common/components/buttons/Button";
 import Loading from "../../../common/components/loading/Loading";
 import Dropdown from "../../../common/components/dropdown/Dropdown";
 import ErrorAlert from "../../../common/components/errorAlert/ErrorAlert";
-import AlternateButton from "../../../common/components/button/AlternateButton";
+import AlternateButton from "../../../common/components/buttons/AlternateButton";
 
 const Cities = () => {
   const [isAddFormVisible, setIsAddFormVisible] = useState(false);
